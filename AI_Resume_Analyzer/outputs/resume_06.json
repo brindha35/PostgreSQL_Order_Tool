@@ -1,0 +1,30 @@
+{
+    "candidate_name": "Meena",
+    "skills": [
+        "SQL",
+        "Power BI",
+        "Excel"
+    ],
+    "years_of_experience": 5,
+    "education": [
+        "MBA"
+    ],
+    "strengths": [
+        "Data analysis and visualization"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "SQL",
+            "evidence": "Extracted data from databases to create reports and analyze customer behavior."
+        },
+        {
+            "skill": "Power BI",
+            "evidence": "Designed and implemented a data visualization dashboard to track sales performance."
+        },
+        {
+            "skill": "Excel",
+            "evidence": "Created and managed spreadsheets to track customer data and sales trends."
+        }
+    ]
+}

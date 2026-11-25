@@ -1,0 +1,35 @@
+{
+    "candidate_name": "Rahul",
+    "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React"
+    ],
+    "years_of_experience": 2,
+    "education": [
+        "BCA"
+    ],
+    "strengths": [
+        "HTML"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "HTML",
+            "evidence": "Extracted from the resume: Rahul is proficient in HTML."
+        },
+        {
+            "skill": "CSS",
+            "evidence": "Extracted from the resume: Rahul is proficient in CSS."
+        },
+        {
+            "skill": "JavaScript",
+            "evidence": "Extracted from the resume: Rahul is proficient in JavaScript."
+        },
+        {
+            "skill": "React",
+            "evidence": "Extracted from the resume: Rahul is proficient in React."
+        }
+    ]
+}

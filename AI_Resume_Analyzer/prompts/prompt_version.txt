@@ -1,0 +1,7 @@
+Prompt Name: Resume Extraction Prompt
+Version: v1.0
+Model: llama3.2:1b
+Temperature: 0
+Output: JSON
+Schema: schema.json
+Status: Initial Version

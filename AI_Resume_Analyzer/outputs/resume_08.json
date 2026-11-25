@@ -1,0 +1,30 @@
+{
+    "candidate_name": "Anitha",
+    "skills": [
+        "FastAPI",
+        "PostgreSQL",
+        "Docker"
+    ],
+    "years_of_experience": 3,
+    "education": [
+        "B.E Information Technology"
+    ],
+    "strengths": [
+        "FastAPI"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "FastAPI",
+            "evidence": "Extracted from the resume: Anitha has experience with FastAPI."
+        },
+        {
+            "skill": "PostgreSQL",
+            "evidence": "Extracted from the resume: Anitha has experience with PostgreSQL."
+        },
+        {
+            "skill": "Docker",
+            "evidence": "Extracted from the resume: Anitha has experience with Docker."
+        }
+    ]
+}

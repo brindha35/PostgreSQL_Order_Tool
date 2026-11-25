@@ -1,0 +1,30 @@
+{
+    "candidate_name": "Priya",
+    "skills": [
+        "Python",
+        "SQL",
+        "Pandas"
+    ],
+    "years_of_experience": 2,
+    "education": [
+        "B.Sc Computer Science"
+    ],
+    "strengths": [
+        "Data analysis and manipulation"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "Python",
+            "evidence": "Extracted from the code snippet: `print('Hello World')`"
+        },
+        {
+            "skill": "SQL",
+            "evidence": "Extracted from the code snippet: `SELECT * FROM users`"
+        },
+        {
+            "skill": "Pandas",
+            "evidence": "Extracted from the code snippet: `df.head()`"
+        }
+    ]
+}

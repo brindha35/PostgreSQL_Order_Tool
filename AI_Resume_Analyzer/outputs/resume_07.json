@@ -1,0 +1,25 @@
+{
+    "candidate_name": "Sanjay",
+    "skills": [
+        "C++",
+        "Python"
+    ],
+    "years_of_experience": null,
+    "education": [
+        "B.Tech Information Technology"
+    ],
+    "strengths": [
+        "Data Structures"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "C++",
+            "evidence": "Extracted from the code snippet: // C++ code"
+        },
+        {
+            "skill": "Python",
+            "evidence": "Extracted from the code snippet: # Python code"
+        }
+    ]
+}

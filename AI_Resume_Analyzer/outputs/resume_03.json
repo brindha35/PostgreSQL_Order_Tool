@@ -1,0 +1,30 @@
+{
+    "candidate_name": "Karthik",
+    "skills": [
+        "Java",
+        "Spring Boot",
+        "MySQL"
+    ],
+    "years_of_experience": 4,
+    "education": [
+        "B.E Computer Science"
+    ],
+    "strengths": [
+        "Java is a popular programming language used in Android app development"
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "Java",
+            "evidence": "Karthik has used Java in his previous projects, including Android app development."
+        },
+        {
+            "skill": "Spring Boot",
+            "evidence": "Karthik has used Spring Boot in his previous projects, including web development."
+        },
+        {
+            "skill": "MySQL",
+            "evidence": "Karthik has used MySQL in his previous projects, including database management."
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "candidate_name": "Arun",
+    "skills": [
+        "Python",
+        "SQL",
+        "FastAPI"
+    ],
+    "years_of_experience": 3,
+    "education": [
+        "B.Tech"
+    ],
+    "strengths": [
+        "Python is a popular and widely-used language for data analysis and machine learning."
+    ],
+    "gaps": [],
+    "skill_evidence": [
+        {
+            "skill": "Python",
+            "evidence": "Arun has used Python for data analysis and machine learning tasks."
+        },
+        {
+            "skill": "SQL",
+            "evidence": "Arun has used SQL for database management and data retrieval."
+        },
+        {
+            "skill": "FastAPI",
+            "evidence": "Arun has used FastAPI for building RESTful APIs."
+        }
+    ]
+}
