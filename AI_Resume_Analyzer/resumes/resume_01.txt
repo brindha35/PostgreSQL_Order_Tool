@@ -1,0 +1,4 @@
+Name: Arun
+Skills: Python, SQL, FastAPI
+Experience: 3 years
+Education: B.Tech

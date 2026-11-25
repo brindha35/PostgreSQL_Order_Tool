@@ -1,0 +1,4 @@
+Name: Priya
+Skills: Python, SQL, Pandas
+Experience: 2 years
+Education: B.Sc Computer Science

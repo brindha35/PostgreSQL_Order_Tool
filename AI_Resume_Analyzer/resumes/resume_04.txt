@@ -1,0 +1,4 @@
+Name: Divya
+Skills: Python, Machine Learning, Pandas
+Experience: 3 years
+Education: M.Sc Data Science

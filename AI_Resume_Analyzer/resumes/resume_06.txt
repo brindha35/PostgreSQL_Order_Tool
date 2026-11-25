@@ -1,0 +1,4 @@
+Name: Meena
+Skills: SQL, Power BI, Excel
+Experience: 5 years
+Education: MBA

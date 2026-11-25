@@ -1,0 +1,4 @@
+Name: Anitha
+Skills: FastAPI, PostgreSQL, Docker
+Experience: 3 years
+Education: B.E Information Technology
