@@ -37,6 +37,20 @@ customers = {
 }
 
 
+@app.get("/customers/search")
+def get_customer_by_email(email: str):
+
+    for customer in customers.values():
+
+        if customer["email"].lower() == email.lower():
+            return customer
+
+    raise HTTPException(
+        status_code=404,
+        detail="Customer not found"
+    )
+
+
 @app.get("/customers/{id}")
 def get_customer(id: int):
 
