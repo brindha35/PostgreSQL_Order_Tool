@@ -1,0 +1,413 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        input, textarea, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        #message {
+            width: 75%;
+        }
+
+        button {
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:disabled {
+            background: gray;
+            cursor: not-allowed;
+        }
+
+        .user {
+            color: blue;
+        }
+
+        .assistant {
+            color: green;
+        }
+
+        .sources {
+            font-size: 13px;
+            color: gray;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .loading {
+            color: orange;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+
+        textarea {
+            width: 95%;
+        }
+
+        details {
+            background: #f5f5f5;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>AI Assistant Chat</h2>
+
+    <div id="messages"></div>
+
+    <input type="text" id="message"
+           placeholder="Ask your question...">
+
+    <button id="sendBtn" onclick="sendMessage()">Send</button>
+
+    <p id="chatStatus" class="loading"></p>
+
+    <br>
+
+    <h3>Upload Document</h3>
+
+    <input type="file" id="file">
+
+    <button id="uploadBtn" onclick="uploadDocument()">
+        Upload Document
+    </button>
+
+    <p id="uploadStatus"></p>
+
+    <h3>Email Draft</h3>
+
+    <textarea id="emailDraft" rows="6"
+              placeholder="Email draft will appear here"></textarea>
+
+    <br>
+
+    <button id="draftBtn" onclick="draftEmail()">
+        Draft Email
+    </button>
+
+    <p id="emailStatus"></p>
+
+    <div id="error" class="error"></div>
+
+</div>
+
+<script>
+
+const API_URL = "http://127.0.0.1:8000";
+
+const SESSION_ID = "frontend-session";
+
+
+function addMessage(type, text) {
+
+    const messages = document.getElementById("messages");
+
+    const p = document.createElement("p");
+
+    p.className = type;
+
+    p.textContent = text;
+
+    messages.appendChild(p);
+
+    messages.scrollTop = messages.scrollHeight;
+}
+
+
+// Chat Function
+async function sendMessage() {
+
+    const input = document.getElementById("message");
+
+    const button = document.getElementById("sendBtn");
+
+    const status = document.getElementById("chatStatus");
+
+    const error = document.getElementById("error");
+
+    const message = input.value.trim();
+
+    if (!message) {
+        error.innerText = "Please enter a message.";
+        return;
+    }
+
+    error.innerText = "";
+
+    addMessage("user", "You: " + message);
+
+    input.value = "";
+
+    button.disabled = true;
+
+    status.innerText = "AI is typing...";
+
+    try {
+
+        const response = await fetch(`${API_URL}/chat`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message,
+                session_id: SESSION_ID
+            })
+
+        });
+
+        if (!response.ok) {
+            throw new Error("Chat request failed");
+        }
+
+        const data = await response.json();
+
+        addMessage("assistant", "AI: " + data.response);
+
+        const messages = document.getElementById("messages");
+
+        const source = document.createElement("p");
+
+        source.className = "sources";
+
+        source.textContent = "Sources: " +
+            (data.sources?.length
+                ? data.sources.join(", ")
+                : "No sources returned");
+
+        messages.appendChild(source);
+
+        const details = document.createElement("details");
+
+        const summary = document.createElement("summary");
+
+        summary.textContent = "How I got this";
+
+        const toolInfo = document.createElement("pre");
+
+        toolInfo.textContent = JSON.stringify(
+            data.tool_calls || [],
+            null,
+            2
+        );
+
+        details.appendChild(summary);
+
+        details.appendChild(toolInfo);
+
+        messages.appendChild(details);
+
+        messages.scrollTop = messages.scrollHeight;
+
+    }
+
+    catch (err) {
+
+        error.innerText =
+            "Sorry! Unable to connect to AI. Please try again.";
+
+    }
+
+    finally {
+
+        status.innerText = "";
+
+        button.disabled = false;
+
+    }
+
+}
+
+
+// Document Upload Function
+async function uploadDocument() {
+
+    const file = document.getElementById("file").files[0];
+
+    const status = document.getElementById("uploadStatus");
+
+    const button = document.getElementById("uploadBtn");
+
+    const error = document.getElementById("error");
+
+    if (!file) {
+
+        error.innerText = "Please select a document.";
+
+        return;
+
+    }
+
+    error.innerText = "";
+
+    const formData = new FormData();
+
+    formData.append("file", file);
+
+    status.innerText = "Uploading document...";
+
+    status.className = "loading";
+
+    button.disabled = true;
+
+    try {
+
+        const response = await fetch(`${API_URL}/documents`, {
+
+            method: "POST",
+
+            body: formData
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.detail || "Upload failed");
+        }
+
+        status.innerText =
+            "Success! " + data.message;
+
+        status.className = "success";
+
+    }
+
+    catch (err) {
+
+        status.innerText =
+            "Document upload failed. Please try again.";
+
+        status.className = "error";
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+    }
+
+}
+
+
+// Email Draft Function
+async function draftEmail() {
+
+    const status = document.getElementById("emailStatus");
+
+    const error = document.getElementById("error");
+
+    const draft = document.getElementById("emailDraft");
+
+    const button = document.getElementById("draftBtn");
+
+    error.innerText = "";
+
+    status.innerText = "Generating email draft...";
+
+    status.className = "loading";
+
+    button.disabled = true;
+
+    try {
+
+        const response = await fetch(`${API_URL}/draft-email`, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                session_id: SESSION_ID,
+
+                tone: "formal"
+
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error("Draft generation failed");
+        }
+
+        draft.value =
+            "Subject: " + data.subject +
+            "\n\n" + data.body;
+
+        status.innerText =
+            "Email draft generated successfully!";
+
+        status.className = "success";
+
+    }
+
+    catch (err) {
+
+        status.innerText =
+            "Unable to generate email draft. Please try again.";
+
+        status.className = "error";
+
+    }
+
+    finally {
+
+        button.disabled = false;
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
