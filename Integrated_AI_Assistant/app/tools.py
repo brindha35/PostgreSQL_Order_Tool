@@ -43,6 +43,6 @@ def get_customer_details(customer_id):
 
 if __name__ == "__main__":
 
-    result = get_customer_details(3)
+    result = get_customer_details(2)
 
     print(result)
