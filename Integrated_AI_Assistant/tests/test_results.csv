@@ -1,0 +1,11 @@
+Test ID,Status,Response Time (ms),Tools Used
+TC01,PASS,4418.58,None
+TC02,PASS,1764.48,None
+TC03,PASS,2703.22,None
+TC04,PASS,4819.82,None
+TC05,PASS,5042.82,None
+TC06,PASS,73.9,get_customer_details
+TC07,PASS,12.07,get_customer_by_email
+TC08,PASS,105.74,get_order_status
+TC09,PASS,207.98,get_order_status
+TC10,PASS,6876.37,Email Draft

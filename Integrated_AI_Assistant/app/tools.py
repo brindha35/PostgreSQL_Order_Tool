@@ -24,25 +24,44 @@ def get_customer_details(customer_id):
 
     try:
         response = session.get(url, timeout=5)
-
         response.raise_for_status()
-
         return response.json()
 
     except requests.exceptions.HTTPError:
         if response.status_code == 404:
-            return "Customer not found"
+            return {"error": "Customer not found"}
 
-        return "CRM server error"
+        return {"error": "CRM server error"}
 
     except requests.exceptions.Timeout:
-        return "CRM request timed out"
+        return {"error": "CRM request timed out"}
 
     except requests.exceptions.RequestException:
-        return "Unable to connect to CRM"
+        return {"error": "Unable to connect to CRM"}
 
-if __name__ == "__main__":
 
-    result = get_customer_details(2)
+def get_customer_by_email(email):
 
-    print(result)
+    url = "http://127.0.0.1:8001/customers/search"
+
+    try:
+        response = session.get(
+            url,
+            params={"email": email},
+            timeout=5
+        )
+
+        response.raise_for_status()
+        return response.json()
+
+    except requests.exceptions.HTTPError:
+        if response.status_code == 404:
+            return {"error": "Customer not found"}
+
+        return {"error": "CRM server error"}
+
+    except requests.exceptions.Timeout:
+        return {"error": "CRM request timed out"}
+
+    except requests.exceptions.RequestException:
+        return {"error": "Unable to connect to CRM"}
